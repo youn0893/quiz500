@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz 2 - From Day 1 To 500 &lt;Encrypted Love&gt;</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #232946 0%, #5f4b8b 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+      overflow: hidden;
+    }
+    .quiz-container {
+      background: rgba(35, 41, 70, 0.85);
+      border-radius: 24px;
+      box-shadow: 0 0 32px #a084ca55;
+      padding: 3rem 2.5rem 2.5rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 340px;
+      z-index: 1;
+    }
+    .question {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 2rem;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .answer-input {
+      font-size: 1.1rem;
+      padding: 0.7em 1.2em;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+      margin-bottom: 1.5rem;
+      background: #f3f0ff;
+      color: #232946;
+      width: 80%;
+      max-width: 220px;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .submit-btn, .next-btn {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      padding: 0.6em 2em;
+      border: none;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #a084ca 0%, #232946 100%);
+      color: #fff;
+      box-shadow: 0 0 10px #a084ca88;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover, .next-btn:hover {
+      background: linear-gradient(90deg, #232946 0%, #a084ca 100%);
+      transform: scale(1.05);
+    }
+    .next-btn {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="question">
+      Q2. 내 &lt;인스타그램&gt; 아이디가 뭐야?
+    </div>
+    <input type="text" class="answer-input" id="answer" placeholder="정답을 입력하세요" autocomplete="off" />
+    <button class="submit-btn" id="submitBtn">확인</button>
+    <button class="next-btn" id="nextBtn">다음 문제</button>
+  </div>
+  <script>
+    const answerInput = document.getElementById('answer');
+    const submitBtn = document.getElementById('submitBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    submitBtn.addEventListener('click', checkAnswer);
+    answerInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkAnswer();
+    });
+    
+    function checkAnswer() {
+      const userAnswer = answerInput.value.trim();
+      if (userAnswer === 'y_s__01') {
+        nextBtn.style.display = 'inline-block';
+        submitBtn.style.display = 'none';
+        answerInput.disabled = true;
+      } else {
+        alert('휴대폰 켜서 확인해봐 :>');
+        answerInput.value = '';
+        answerInput.focus();
+      }
+    }
+    nextBtn.addEventListener('click', function() {
+      window.location.href = 'quiz3.html';
+    });
+  </script>
+</body>
+</html> 

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz 5 - From Day 1 To 500 &lt;Encrypted Love&gt;</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #232946 0%, #5f4b8b 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Cormorant Garamond', 'Playfair+Display', serif;
+      overflow: hidden;
+    }
+    .quiz-container {
+      background: rgba(35, 41, 70, 0.85);
+      border-radius: 24px;
+      box-shadow: 0 0 32px #a084ca55;
+      padding: 3rem 2.5rem 2.5rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 340px;
+      z-index: 1;
+    }
+    .question {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 2rem;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .input-row {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .inline-input {
+      display: inline-block;
+      width: 180px;
+      font-size: 1.1rem;
+      padding: 0.3em 0.7em;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      background: #f3f0ff;
+      color: #232946;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      margin: 0 0.3em;
+    }
+    .submit-btn, .finish-btn {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      padding: 0.6em 2em;
+      border: none;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #a084ca 0%, #232946 100%);
+      color: #fff;
+      box-shadow: 0 0 10px #a084ca88;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      margin-top: 1.5rem;
+      display: block;
+    }
+    .submit-btn:hover, .finish-btn:hover {
+      background: linear-gradient(90deg, #232946 0%, #a084ca 100%);
+      transform: scale(1.05);
+    }
+    .finish-btn {
+      display: none;
+    }
+    .congrats {
+      color: #ffe066;
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      text-shadow: 0 0 10px #ffe06688;
+      display: none;
+    }
+    .angle {
+      color: #ffe066;
+      font-size: 1.2em;
+      font-family: 'Playfair Display', serif;
+      vertical-align: middle;
+      font-weight: bold;
+    }
+    .modal-bg {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal {
+      background: #232946;
+      border-radius: 18px;
+      box-shadow: 0 0 24px #a084ca88;
+      padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+      min-width: 320px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    .modal-hint {
+      font-size: 0.98rem;
+      color: #ffe066;
+      margin-bottom: 1.2rem;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .modal-input {
+      width: 180px;
+      font-size: 1.05rem;
+      padding: 0.5em 0.8em;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      background: #f3f0ff;
+      color: #232946;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      margin-bottom: 1.2rem;
+    }
+    .modal-btn {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      padding: 0.5em 1.5em;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(90deg, #a084ca 0%, #232946 100%);
+      color: #fff;
+      box-shadow: 0 0 8px #a084ca88;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      margin-bottom: 0.7rem;
+    }
+    .modal-btn:hover {
+      background: linear-gradient(90deg, #232946 0%, #a084ca 100%);
+      transform: scale(1.05);
+    }
+    .modal-small {
+      font-size: 0.85rem;
+      padding: 0.3em 1em;
+      margin-bottom: 0;
+      margin-top: 0.2rem;
+      background: #ffe066;
+      color: #232946;
+      box-shadow: none;
+      border: none;
+      border-radius: 12px;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+    .modal-small:hover {
+      opacity: 1;
+      background: #fffbe6;
+    }
+    .modal-congrats {
+      color: #ffe066;
+      font-size: 1.1rem;
+      margin-top: 1.2rem;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      text-shadow: 0 0 10px #ffe06688;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="question">
+      Q5. 내가 가장 좋아하는 색깔은?
+    </div>
+    <div class="input-row">
+      <span class="angle">&lt;</span><input type="text" class="inline-input" id="answer" placeholder="정답을 입력하세요" autocomplete="off" /><span class="angle">&gt;</span>
+    </div>
+    <button class="submit-btn" id="submitBtn">확인</button>
+    <div class="congrats" id="congratsMsg">지금까지의 문제들 잘 확인했어?</div>
+    <button class="finish-btn" id="finishBtn">마지막 (진짜) 문제</button>
+    <div class="modal-bg" id="modalBg">
+      <div class="modal">
+        <div class="modal-title">Q. 마지막 문제의 정답은?</div>
+        <div class="modal-hint">* 지금까지의 문제와 정답에 힌트가 있어.<br>* 원한다면 처음으로 돌아가도 좋아.</div>
+        <input type="text" class="modal-input" id="finalAnswer" placeholder="정답을 입력하세요" autocomplete="off" />
+        <button class="modal-btn" id="finalSubmit">확인</button>
+        <button class="modal-small" id="goStart">처음으로 돌아가기</button>
+        <button class="modal-btn" id="congratsBtn" style="display:none;">축하해</button>
+        <div class="modal-congrats" id="finalCongrats">정답! 진짜 마지막까지 다 풀었어 🎉</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const answerInput = document.getElementById('answer');
+    const submitBtn = document.getElementById('submitBtn');
+    const congratsMsg = document.getElementById('congratsMsg');
+    const finishBtn = document.getElementById('finishBtn');
+    
+    submitBtn.addEventListener('click', checkAnswer);
+    answerInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkAnswer();
+    });
+    
+    function checkAnswer() {
+      const userAnswer = answerInput.value.trim();
+      if (userAnswer === '노란색') {
+        congratsMsg.style.display = 'block';
+        finishBtn.style.display = 'inline-block';
+        submitBtn.style.display = 'none';
+        answerInput.disabled = true;
+      } else {
+        alert('오타지?');
+        answerInput.value = '';
+        answerInput.focus();
+      }
+    }
+    finishBtn.addEventListener('click', function() {
+      modalBg.style.display = 'flex';
+      finalAnswer.value = '';
+      finalAnswer.disabled = false;
+      finalCongrats.style.display = 'none';
+      finalSubmit.style.display = 'inline-block';
+      finalAnswer.focus();
+    });
+    finalSubmit.addEventListener('click', checkFinalAnswer);
+    finalAnswer.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkFinalAnswer();
+    });
+    function checkFinalAnswer() {
+      const userAnswer = finalAnswer.value.trim().toLowerCase();
+      if (userAnswer === 'wippy') {
+        finalCongrats.style.display = 'block';
+        finalSubmit.style.display = 'none';
+        finalAnswer.disabled = true;
+        goStart.style.display = 'none';
+        congratsBtn.style.display = 'inline-block';
+      } else {
+        alert('네 입으로 말했잖아...');
+        finalAnswer.value = '';
+        finalAnswer.focus();
+      }
+    }
+    goStart.addEventListener('click', function() {
+      window.location.href = 'quiz_start.html';
+    });
+    congratsBtn.addEventListener('click', function() {
+      window.open('congrats.html', '_blank');
+    });
+  </script>
+</body>
+</html> 

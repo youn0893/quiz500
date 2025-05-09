@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Day 1 To 500 &lt;Encrypted Love&gt;</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #232946 0%, #5f4b8b 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+      overflow: hidden;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+    h1 {
+      font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      color: #fff;
+      letter-spacing: 2px;
+      text-shadow: 0 0 20px #a084ca, 0 0 40px #232946;
+      margin-bottom: 2rem;
+      background: linear-gradient(90deg, #fff 60%, #a084ca 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .enter-btn {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      padding: 0.8em 2.5em;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #a084ca 0%, #232946 100%);
+      color: #fff;
+      box-shadow: 0 0 20px #a084ca88;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .enter-btn:hover {
+      background: linear-gradient(90deg, #232946 0%, #a084ca 100%);
+      transform: scale(1.05);
+    }
+    .link {
+      margin-top: 2.5rem;
+      font-size: 1.1rem;
+      color: #fff;
+      text-decoration: underline;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .link:hover {
+      opacity: 1;
+    }
+    /* 별빛 효과 */
+    .stars {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: twinkle 2s infinite alternate;
+    }
+    @keyframes twinkle {
+      from { opacity: 0.5; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>From Day 1 To 500 <br>&lt;Encrypted Love&gt;</h1>
+    <button class="enter-btn" onclick="location.href='quiz.html'">입장하기</button>
+    <a class="link" href="file:///C:/Users/USER/Desktop/quiz_start.html" target="_blank">바로가기 (새 창에서 열기)</a>
+    <div class="stars" id="stars"></div>
+  </div>
+  <script>
+    // 별빛 효과 동적으로 생성
+    const starCount = 80;
+    const stars = document.getElementById('stars');
+    for(let i=0; i<starCount; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDelay = (Math.random() * 2) + 's';
+      stars.appendChild(star);
+    }
+  </script>
+</body>
+</html> 
