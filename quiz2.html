@@ -70,9 +70,33 @@
     .next-btn {
       display: none;
     }
+  .flying-btn {
+      position: fixed;
+      top: 50px;
+      left: 50px;
+      z-index: 999;
+      padding: 0.7em 1.5em;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #ffb4a2 0%, #a084ca 100%);
+      color: #fff;
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 0 16px #a084ca88;
+      transition: background 0.3s, transform 0.2s;
+      animation: fly 4s linear infinite alternate;
+    }
+    @keyframes fly {
+      0%   { top: 50px; left: 50px; }
+      25%  { top: 80px; left: 80vw; }
+      50%  { top: 60vh; left: 60vw; }
+      75%  { top: 80vh; left: 10vw; }
+      100% { top: 50px; left: 50px; }
+    }
   </style>
 </head>
 <body>
+  <button class="flying-btn" id="flyingBtn">힌트</button>
   <div class="quiz-container">
     <div class="question">
       Q2. 내 &lt;인스타그램&gt; 아이디가 뭐야?
@@ -89,6 +113,10 @@
     submitBtn.addEventListener('click', checkAnswer);
     answerInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') checkAnswer();
+    });
+
+     flyingBtn.addEventListener('click', function() {
+      alert('영어로 바꿔봐');
     });
     
     function checkAnswer() {
